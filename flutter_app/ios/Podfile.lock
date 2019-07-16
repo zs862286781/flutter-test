@@ -1,9 +1,12 @@
 PODS:
-  - AMap2DMap-NO-IDFA (5.6.1):
-    - AMapFoundation-NO-IDFA (~> 1.4)
+  - AMap3DMap-NO-IDFA (6.9.0):
+    - AMapFoundation-NO-IDFA (~> 1.5)
   - AMapFoundation-NO-IDFA (1.5.6)
   - AMapLocation-NO-IDFA (2.6.2):
     - AMapFoundation-NO-IDFA (~> 1.4)
+  - AMapNavi-NO-IDFA (6.8.0):
+    - AMap3DMap-NO-IDFA (~> 6.7)
+    - AMapFoundation-NO-IDFA (~> 1.5)
   - Flutter (1.0.0)
   - fluttertoast (0.0.2):
     - Flutter
@@ -13,8 +16,8 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - AMap2DMap-NO-IDFA
   - AMapLocation-NO-IDFA
+  - AMapNavi-NO-IDFA
   - Flutter (from `.symlinks/flutter/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
@@ -31,14 +34,15 @@ EXTERNAL SOURCES:
     :path: .symlinks/plugins/shared_preferences/ios
 
 SPEC CHECKSUMS:
-  AMap2DMap-NO-IDFA: ccecb3e2a044c17e6badb9b91c950e709368be20
+  AMap3DMap-NO-IDFA: ffb000a25913efcdc5d979faa54a78655965bc23
   AMapFoundation-NO-IDFA: 40d723b352992d0f95abe2976f0c0ecda3c3ffc3
   AMapLocation-NO-IDFA: d7792c8c516f415e186f1bc25946f1a58ca6a583
+  AMapNavi-NO-IDFA: 93c9e767a120472ace590f53a7917595822bde2c
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
   fluttertoast: 0a20dcbbb8ecfd1a61b6285651ff2d5989d033fb
   image_picker: ee00aab0487cedc80a304085219503cc6d0f2e22
   shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
 
-PODFILE CHECKSUM: cb8d491b2e06fbf8ed45a88e6c9a3df4d7507148
+PODFILE CHECKSUM: 7da97d181bfc6051496a705510c3606f22719f88
 
 COCOAPODS: 1.4.0

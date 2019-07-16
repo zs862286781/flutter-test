@@ -9,9 +9,12 @@
 #import "MapVC.h"
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
-@interface MapVC ()<MAMapViewDelegate>
+#import <AMapNaviKit/AMapNaviKit.h>
+@interface MapVC ()<MAMapViewDelegate,AMapNaviDriveManagerDelegate>
 {
     MAMapView *_mapView;
+    AMapNaviPoint *startPoint;
+    AMapNaviPoint *endPoint;
 }
 @end
 
@@ -23,12 +26,50 @@
     [AMapServices sharedServices].enableHTTPS = YES;
     ///初始化地图
     _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
-    _mapView.centerCoordinate = CLLocationCoordinate2DMake(31.952344, 118.779444);
+//    _mapView.centerCoordinate = CLLocationCoordinate2DMake(31.952344, 118.779444);
+    _mapView.centerCoordinate = CLLocationCoordinate2DMake(39.99, 116.47);
+    
     ///把地图添加至view
     _mapView.zoomLevel = 16;
     _mapView.delegate = self;
     [self.view addSubview:_mapView];
+    [self initProperties];
+}
+
+- (void)initProperties
+{
+    startPoint = [AMapNaviPoint locationWithLatitude:39.99 longitude:116.47];
+    endPoint   = [AMapNaviPoint locationWithLatitude:39.90 longitude:116.32];
+    [[AMapNaviDriveManager sharedInstance] setDelegate:self];
+    [[AMapNaviDriveManager sharedInstance] calculateDriveRouteWithStartPoints:@[startPoint] endPoints:@[endPoint] wayPoints:nil drivingStrategy:0];
+}
+
+- (void)dealloc
+{
+    [[AMapNaviDriveManager sharedInstance] stopNavi];
+//    [[AMapNaviDriveManager sharedInstance] removeDataRepresentative:self.driveView];
+    [[AMapNaviDriveManager sharedInstance] setDelegate:nil];
+    BOOL success = [AMapNaviDriveManager destroyInstance];
+    NSLog(@"单例是否销毁成功 : %d",success);
+}
+
+- (void)driveManagerOnCalculateRouteSuccess:(AMapNaviDriveManager *)driveManager
+{
+    NSLog(@"onCalculateRouteSuccess");
+    CLLocationCoordinate2D commonPolylineCoords[driveManager.naviRoute.routeCoordinates.count];
+    //显示路径或开启导航
+    for (int i = 0; i<driveManager.naviRoute.routeCoordinates.count; i++) {
+        AMapNaviPoint *obj = driveManager.naviRoute.routeCoordinates[i];
+        commonPolylineCoords[i].latitude = obj.latitude;
+        commonPolylineCoords[i].longitude = obj.longitude;
+    }
+    MAPolyline *commonPolyline = [MAPolyline polylineWithCoordinates:commonPolylineCoords count:driveManager.naviRoute.routeCoordinates.count];
+//    //在地图上添加折线对象
+    [_mapView addOverlay: commonPolyline];
     
+//    NSLog(@"%ld",driveManager.naviRouteID);
+//    BOOL success =  [[AMapNaviDriveManager sharedInstance] selectNaviRouteWithRouteID:driveManager.naviRouteID];
+//    NSLog(@"路线获取成功 : %d",success);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -37,7 +78,6 @@
     pointAnnotation.coordinate = CLLocationCoordinate2DMake(31.952344, 118.779444);
     pointAnnotation.title = @"托乐嘉";
     //    pointAnnotation.subtitle = @"阜通东大街6号";
-    
     [_mapView addAnnotation:pointAnnotation];
 }
 
@@ -56,6 +96,22 @@
         annotationView.draggable = YES;        //设置标注可以拖动，默认为NO
         annotationView.pinColor = MAPinAnnotationColorPurple;
         return annotationView;
+    }
+    return nil;
+}
+
+- (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id <MAOverlay>)overlay
+{
+    if ([overlay isKindOfClass:[MAPolyline class]])
+    {
+        MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:overlay];
+        
+        polylineRenderer.lineWidth    = 8.f;
+        polylineRenderer.strokeColor  = [UIColor colorWithRed:0 green:1 blue:0 alpha:1];
+        polylineRenderer.lineJoinType = kMALineJoinRound;
+        polylineRenderer.lineCapType  = kMALineCapRound;
+        
+        return polylineRenderer;
     }
     return nil;
 }

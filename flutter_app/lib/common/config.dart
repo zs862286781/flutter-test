@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String BaseUrl = "https://192.168.1.42:8443/pmhyapp";
+String BaseUrl = "http://192.168.1.201:8000/pmhyapp";
 
 //-----------键值----------------
 String kToken = 'z-token';

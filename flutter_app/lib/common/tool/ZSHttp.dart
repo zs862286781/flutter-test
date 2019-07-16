@@ -61,7 +61,7 @@ class ZSHttp {
   }
 
   get({String url,data,HTTPCallBack callBack}) async {
-    await httpClientCreate();
+//    await httpClientCreate();
     dio.options.headers = await httpHeader();
     try {
       Response response = await dio.get(url,queryParameters: data);

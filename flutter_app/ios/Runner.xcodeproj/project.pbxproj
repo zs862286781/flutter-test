@@ -267,11 +267,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Runner/Pods-Runner-resources.sh",
-				"${PODS_ROOT}/AMap2DMap-NO-IDFA/MAMapKit.framework/AMap.bundle",
+				"${PODS_ROOT}/AMap3DMap-NO-IDFA/MAMapKit.framework/AMap.bundle",
+				"${PODS_ROOT}/AMapNavi-NO-IDFA/AMapNaviKit.framework/AMapNavi.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMapNavi.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
