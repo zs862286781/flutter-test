@@ -2,6 +2,7 @@
 #include "GeneratedPluginRegistrant.h"
 #import "ZSLocation.h"
 #import "MapVC.h"
+#import "WebPageViewController.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application
@@ -21,8 +22,16 @@
             [[ZSLocation getInstance] getLocation:result];
         }
         else if ([@"goMap" isEqualToString:call.method]) {
-            NSLog(@"3333333");
-            [controller presentViewController:[MapVC new] animated:true completion:nil];
+            MapVC *mapVc = [MapVC new];
+            mapVc.result = call.arguments;
+            [controller presentViewController:mapVc animated:true completion:nil];
+        }
+        else if ([@"openOffice" isEqualToString:call.method]) {
+            WebPageViewController *vc = [WebPageViewController new];
+            vc.titleString = @"文档展示";
+            vc.webPageUrl = [NSURL URLWithString:@"http://192.168.1.236:8080/pmhyapp/file/download/290080"];
+            vc.token = call.arguments;
+            [controller presentViewController:vc animated:true completion:nil];
         }
         else {
             result(FlutterMethodNotImplemented);

@@ -27,7 +27,7 @@ class ZSTool {
      var token = await getShareDataString(key: kToken);
      return token == null ? false : true;
    }
-/*
+  /*
   * Base64加密
   */
   String base64Encode(String data){
@@ -46,7 +46,7 @@ class ZSTool {
         fontSize: 16.0
     );
   }
-/*
+  /*
   * 通过图片路径将图片转换成Base64字符串
   */
   Future<String> image2Base64(String path) async {

@@ -15,6 +15,9 @@
     MAMapView *_mapView;
     AMapNaviPoint *startPoint;
     AMapNaviPoint *endPoint;
+    UIButton *backBtn;
+    double latitude;
+    double longitude;
 }
 @end
 
@@ -23,23 +26,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
     [AMapServices sharedServices].enableHTTPS = YES;
     ///初始化地图
     _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
-//    _mapView.centerCoordinate = CLLocationCoordinate2DMake(31.952344, 118.779444);
-    _mapView.centerCoordinate = CLLocationCoordinate2DMake(39.99, 116.47);
+    latitude = [_result[@"latitude"] doubleValue];
+    longitude = [_result[@"longitude"] doubleValue];
+    _mapView.centerCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+//    _mapView.centerCoordinate = CLLocationCoordinate2DMake(39.99, 116.47);
     
     ///把地图添加至view
     _mapView.zoomLevel = 16;
     _mapView.delegate = self;
     [self.view addSubview:_mapView];
     [self initProperties];
+    [self createback];
 }
+
+- (void)createback {
+    backBtn = [UIButton new];
+    backBtn.frame = CGRectMake(20, 40, 80, 40);
+    [backBtn setTitle:@"返回" forState:UIControlStateNormal];
+    [backBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+//    backBtn.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:backBtn];
+}
+
+- (void)back {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
 
 - (void)initProperties
 {
-    startPoint = [AMapNaviPoint locationWithLatitude:39.99 longitude:116.47];
-    endPoint   = [AMapNaviPoint locationWithLatitude:39.90 longitude:116.32];
+    startPoint = [AMapNaviPoint locationWithLatitude:latitude longitude:longitude];
+    endPoint   = [AMapNaviPoint locationWithLatitude:31.96 longitude:118.80];
     [[AMapNaviDriveManager sharedInstance] setDelegate:self];
     [[AMapNaviDriveManager sharedInstance] calculateDriveRouteWithStartPoints:@[startPoint] endPoints:@[endPoint] wayPoints:nil drivingStrategy:0];
 }
@@ -75,8 +97,10 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
-    pointAnnotation.coordinate = CLLocationCoordinate2DMake(31.952344, 118.779444);
-    pointAnnotation.title = @"托乐嘉";
+    latitude = [_result[@"latitude"] doubleValue];
+    longitude = [_result[@"longitude"] doubleValue];
+    pointAnnotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+    pointAnnotation.title = _result[@"formattedAddress"];
     //    pointAnnotation.subtitle = @"阜通东大街6号";
     [_mapView addAnnotation:pointAnnotation];
 }
@@ -106,8 +130,8 @@
     {
         MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:overlay];
         
-        polylineRenderer.lineWidth    = 8.f;
-        polylineRenderer.strokeColor  = [UIColor colorWithRed:0 green:1 blue:0 alpha:1];
+        polylineRenderer.lineWidth    = 5.f;
+        polylineRenderer.strokeColor  = [UIColor colorWithRed:0 green:1 blue:1 alpha:1];
         polylineRenderer.lineJoinType = kMALineJoinRound;
         polylineRenderer.lineCapType  = kMALineCapRound;
         

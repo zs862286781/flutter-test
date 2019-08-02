@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MapVC : UIViewController
 
+@property (nonatomic,retain)NSDictionary *result;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:flutter_app/task/demoTest.dart';
 class TaskPage extends StatefulWidget {
   @override
   TaskPageState createState() => TaskPageState();
 }
 
 class TaskPageState extends State<TaskPage> {
-  static const MethodChannel methodChannel = MethodChannel('samples.flutter.io/battery');
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -20,13 +19,11 @@ class TaskPageState extends State<TaskPage> {
           padding: EdgeInsets.only(top: 10),
           itemBuilder: (context,index) {
             return GestureDetector(
-              onTap: () async {
-                try {
-//                  final Map result = await methodChannel.invokeMethod('getLocation');
-//                  print(result['formattedAddress']);
-                  await methodChannel.invokeMethod('goMap');
-                } on PlatformException {
-                }
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return DemoPage();
+                }));
+
               },
               child: Container(
                 color: Colors.white,

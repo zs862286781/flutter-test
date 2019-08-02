@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		135B6548B8D071F04AA0E266 /* libPods-Runner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D31F5986D9273CF67A3977 /* libPods-Runner.a */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
+		157B2BFD22F3DC950066EDB4 /* WebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157B2BFC22F3DC950066EDB4 /* WebPageViewController.m */; };
 		15BB079822C49EC0002CBD1D /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BB079722C49EC0002CBD1D /* MapVC.m */; };
 		15BC10CB22C474F900D9B10E /* ZSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BC10CA22C474F900D9B10E /* ZSLocation.m */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
@@ -42,6 +43,8 @@
 /* Begin PBXFileReference section */
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
+		157B2BFB22F3DC950066EDB4 /* WebPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPageViewController.h; sourceTree = "<group>"; };
+		157B2BFC22F3DC950066EDB4 /* WebPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPageViewController.m; sourceTree = "<group>"; };
 		15BB079622C49EC0002CBD1D /* MapVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		15BB079722C49EC0002CBD1D /* MapVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
 		15BC10C922C474F900D9B10E /* ZSLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZSLocation.h; sourceTree = "<group>"; };
@@ -77,6 +80,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		157B2BFA22F3DC780066EDB4 /* WebPage */ = {
+			isa = PBXGroup;
+			children = (
+				157B2BFB22F3DC950066EDB4 /* WebPageViewController.h */,
+				157B2BFC22F3DC950066EDB4 /* WebPageViewController.m */,
+			);
+			name = WebPage;
+			sourceTree = "<group>";
+		};
 		9740EEB11CF90186004384FC /* Flutter */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +124,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				157B2BFA22F3DC780066EDB4 /* WebPage */,
 				7AFFD8ED1D35381100E5BB4D /* AppDelegate.h */,
 				7AFFD8EE1D35381100E5BB4D /* AppDelegate.m */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
@@ -323,6 +336,7 @@
 				15BC10CB22C474F900D9B10E /* ZSLocation.m in Sources */,
 				97C146F31CF9000F007C117D /* main.m in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				157B2BFD22F3DC950066EDB4 /* WebPageViewController.m in Sources */,
 				15BB079822C49EC0002CBD1D /* MapVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

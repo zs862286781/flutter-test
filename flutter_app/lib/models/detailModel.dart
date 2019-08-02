@@ -2,7 +2,7 @@ class HeTongModel {
   final String address,bgncode,bgnname,second,
       signdate,createdate,bgnvalueStr,shuilv,bgntype,remark,deptname;
   final int first,jsfs;
-  final double bgnvalue;
+  final String bgnvalue;
   HeTongModel({
     this.address,
     this.bgncode,
@@ -20,20 +20,20 @@ class HeTongModel {
     this.deptname
   });
   HeTongModel.fromJSON(Map<String, dynamic> data) :
-        deptname = data['deptname'] != null ? data['deptname'] : '',
-        address = data['address'] != null ? data['address'] : '',
-        bgncode = data['bgncode'] != null ? data['bgncode'] : '',
-        bgnname = data['bgnname'] != null ? data['bgnname'] : '',
-        second = data['second'] != null ? data['second'] : '',
-        signdate = data['signdate'] != null ? data['signdate'] : '',
-        createdate = data['createdate'] != null ? data['createdate'] : '',
-        bgnvalueStr = data['bgnvalueStr'] != null ? data['bgnvalueStr'] : '',
+        deptname = data['deptname'] != null ? data['deptname'].toString() : '',
+        address = data['address'] != null ? data['address'].toString() : '',
+        bgncode = data['bgncode'] != null ? data['bgncode'].toString() : '',
+        bgnname = data['bgnname'] != null ? data['bgnname'].toString() : '',
+        second = data['second'] != null ? data['second'].toString() : '',
+        signdate = data['signdate'] != null ? data['signdate'].toString() : '',
+        createdate = data['createdate'] != null ? data['createdate'].toString() : '',
+        bgnvalueStr = data['bgnvalueStr'] != null ? data['bgnvalueStr'].toString() : '',
         first = data['first'] != null ? data['first'] : '',
-        bgnvalue = data['bgnvalue'] != null ? data['bgnvalue'] : '',
-        shuilv = data['shuilv'] != null ? data['shuilv'] : '',
-        bgntype = data['bgntype'] != null ? data['bgntype'] : '',
+        bgnvalue = data['bgnvalue'] != null ? data['bgnvalue'].toString() : '',
+        shuilv = data['shuilv'] != null ? data['shuilv'].toString() : '',
+        bgntype = data['bgntype'] != null ? data['bgntype'].toString() : '',
         jsfs = data['jsfs'] != null ? data['jsfs'] : '',
-        remark = data['remark'] != null ? data['remark'] : '';
+        remark = data['remark'] != null ? data['remark'].toString() : '';
 }
 
 class HRModel {
