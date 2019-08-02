@@ -12,10 +12,16 @@
     FlutterViewController* controller =
     (FlutterViewController*)self.window.rootViewController;
     controller.view.backgroundColor = [UIColor whiteColor];
+    [self methodChannel:controller];
+    // Override point for customization after application launch.
+    return [super application:application didFinishLaunchingWithOptions:launchOptions];
+}
+
+- (void)methodChannel:(FlutterViewController*)controller {
     FlutterMethodChannel* batteryChannel = [FlutterMethodChannel
                                             methodChannelWithName:@"samples.flutter.io/battery"
                                             binaryMessenger:controller];
-//    __weak typeof(self) weakSelf = self;
+    //    __weak typeof(self) weakSelf = self;
     [batteryChannel setMethodCallHandler:^(FlutterMethodCall* call,
                                            FlutterResult result) {
         if ([@"getLocation" isEqualToString:call.method]) {
@@ -37,8 +43,6 @@
             result(FlutterMethodNotImplemented);
         }
     }];
-  // Override point for customization after application launch.
-  return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 @end

@@ -40,7 +40,9 @@
     _mapView.delegate = self;
     [self.view addSubview:_mapView];
     [self initProperties];
-    [self createback];
+//    [self createback];
+    self.t = @"地图";
+    [self.view addSubview:self.navView];
 }
 
 - (void)createback {

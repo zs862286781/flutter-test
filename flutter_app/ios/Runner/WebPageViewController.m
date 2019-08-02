@@ -27,6 +27,8 @@ static void *ZLCWebBrowserContext = &ZLCWebBrowserContext;
     [super viewDidLoad];
 //    [self initNavigationView];
     self.title = _titleString;
+    self.t = @"文档预览";
+    [self.view addSubview:self.navView];
     [self.view addSubview:self.webView];
     
     self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
@@ -223,6 +225,7 @@ static void *ZLCWebBrowserContext = &ZLCWebBrowserContext;
     }
     return _webView;
 }
+
 
 
 

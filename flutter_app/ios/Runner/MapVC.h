@@ -6,11 +6,11 @@
 //  Copyright © 2019 The Chromium Authors. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MapVC : UIViewController
+@interface MapVC : BaseViewController
 
 @property (nonatomic,retain)NSDictionary *result;
 
