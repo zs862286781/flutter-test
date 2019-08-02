@@ -488,14 +488,14 @@ class RenWuDetailState extends State<RenWuDetail> {
               child: Icon(Icons.chat),
             ),
           ),
-          FlatButton(
-            onPressed: (){
-              Navigator.pushNamed(context, 'chart');
-            },
-            child: Container(
-              child: Icon(Icons.local_airport),
-            ),
-          )
+//          FlatButton(
+//            onPressed: (){
+//              Navigator.pushNamed(context, 'chart');
+//            },
+//            child: Container(
+//              child: Icon(Icons.local_airport),
+//            ),
+//          )
         ],
       ),
       body: GridView.builder(
